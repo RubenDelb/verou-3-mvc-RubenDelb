@@ -6,6 +6,13 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
+function pre($array)
+{
+    echo "<pre>";
+    print_r($array);
+    echo "</pre>";
+}
+
 //include all your model files here
 require 'Model/Article.php';
 //include all your controllers here
@@ -27,6 +34,8 @@ switch ($page) {
         break;
     case 'articles-show':
         // TODO: detail page
+        (new ArticleController())->show();
+        break;
     case 'home':
     default:
         (new HomepageController())->index();
