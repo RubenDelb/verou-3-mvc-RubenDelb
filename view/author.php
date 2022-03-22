@@ -4,11 +4,13 @@
 
 <section>
     <h1>Articles written by <i><?= $_GET["author"] ?></i> </h1>
-    <ul>
-        <?php foreach ($articles as $article) : if ($article->author == $_GET["author"]){ ?>
-            <li><a href="index.php?page=articles-show&id=<?= $article->id ?>"><?= $article->title ?></a> (<?= $article->formatPublishDate() ?>)</li>
-        <?php } endforeach; ?>
-    </ul>
+    <pre style="background-color: #E9E5D6">
+        <ul>
+            <?php foreach ($articles as $article) : if ($article->author == $_GET["author"]){ ?>
+                <li><a href="index.php?page=articles-show&id=<?= $article->id ?>"><?= $article->title ?></a> (<?= $article->formatPublishDate() ?>)</li>
+            <?php } endforeach; ?>
+        </ul>
+    </pre>
 </section>
 
 <?php require 'View/includes/footer.php'?>
