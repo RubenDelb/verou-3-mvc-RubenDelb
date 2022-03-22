@@ -6,7 +6,7 @@
     <h1>Articles</h1>
     <ul>
         <?php foreach ($articles as $article) : ?>
-            <li><a href="index.php?page=articles-show&id=<?= $article->id ?>"><?= $article->title ?></a> - By <i><?= $article->author ?></i> (<?= $article->formatPublishDate() ?>)</li>
+            <li><a href="index.php?page=articles-show&id=<?= $article->id ?>"><?= $article->title ?></a> - By <a href="index.php?page=articles-author&author=<?= $article->author ?>"><i><?= $article->author ?></i></a> (<?= $article->formatPublishDate() ?>)</li>
         <?php endforeach; ?>
     </ul>
 </section>

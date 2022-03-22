@@ -6,7 +6,7 @@
     <h1><?= $article->title ?></h1>
     <p><?= $article->formatPublishDate() ?></p>
     <p><?= $article->description ?></p>
-    <p> Written by <i><?= $article->author ?></i></p>
+    <p> Written by <a href="index.php?page=articles-author&author=<?= $article->author ?>"><i><?= $article->author ?></i></a></p>
 
     <a href="index.php?page=articles-show&id=<?= $this->getPreviousId($article->id); ?>">Previous article</a>
     <a href="index.php?page=articles-show&id=<?= $this->getNextId($article->id); ?>">Next article</a>
