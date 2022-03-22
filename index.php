@@ -36,6 +36,10 @@ switch ($page) {
         // TODO: detail page
         (new ArticleController())->show();
         break;
+    case 'articles-author':
+        // TODO: detail page
+        (new ArticleController())->getArticlesByAuthor();
+        break;
     case 'home':
     default:
         (new HomepageController())->index();
