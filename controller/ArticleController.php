@@ -16,25 +16,24 @@ class ArticleController
 
     public function index()
     {
-        // Load all required data
         $articles = $this->getArticles();
-
-        // Load the view
+        
         require 'View/articles/index.php';
     }
 
-    // Note: this function can also be used in a repository - the choice is yours
+    public function getArticlesByAuthor()
+    {
+        $articles = $this->getArticles();
+
+        require 'View/author.php';
+    }
+
     private function getArticles()
     {
-        // Prepare the database connection
-        // Note: you might want to use a re-usable databaseManager class - the choice is yours
-
-        // Fetch all articles as $rawArticles (as a simple array)
         $query = "SELECT * FROM articles";
         $result = $this->database->connection->prepare($query);
         $result->execute();
         $rawArticles = $result->fetchAll(PDO::FETCH_ASSOC);
-        // $articles = [];
         foreach ($rawArticles as $rawArticle) {
             // We are converting an article from a "dumb" array to a much more flexible class
             $articles[] = new Article($rawArticle['id'], $rawArticle['title'], $rawArticle['description'], $rawArticle['publish_date'], $rawArticle['author']);
@@ -44,15 +43,13 @@ class ArticleController
 
     public function show()
     {
-        // TODO: this can be used for a detail page
         $query = "SELECT * FROM articles WHERE id=(SELECT min(id) FROM articles WHERE id >=  '{$_GET['id']}');";
         $result = $this->database->connection->prepare($query);
         $result->execute();
         $rawArticle = $result->fetch(PDO::FETCH_ASSOC);
         
         $article = new Article($rawArticle['id'], $rawArticle['title'], $rawArticle['description'], $rawArticle['publish_date'], $rawArticle['author']);        
-        // Load all required data
-        // Load the view
+
         require 'View/articles/show.php';
     }
 
