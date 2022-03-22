@@ -34,9 +34,10 @@ class ArticleController
         $result = $this->database->connection->prepare($query);
         $result->execute();
         $rawArticles = $result->fetchAll(PDO::FETCH_ASSOC);
+
         foreach ($rawArticles as $rawArticle) {
             // We are converting an article from a "dumb" array to a much more flexible class
-            $articles[] = new Article($rawArticle['id'], $rawArticle['title'], $rawArticle['description'], $rawArticle['publish_date'], $rawArticle['author']);
+            $articles[] = new Article($rawArticle['id'], $rawArticle['title'], $rawArticle['description'], $rawArticle['publish_date'], $rawArticle['author'], $rawArticle['image_link']);
         }
         return $articles;
     }
@@ -48,7 +49,7 @@ class ArticleController
         $result->execute();
         $rawArticle = $result->fetch(PDO::FETCH_ASSOC);
         
-        $article = new Article($rawArticle['id'], $rawArticle['title'], $rawArticle['description'], $rawArticle['publish_date'], $rawArticle['author']);        
+        $article = new Article($rawArticle['id'], $rawArticle['title'], $rawArticle['description'], $rawArticle['publish_date'], $rawArticle['author'], $rawArticle['image_link']);        
 
         require 'View/articles/show.php';
     }

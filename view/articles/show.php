@@ -4,7 +4,9 @@
 
 
 <section>
+    
     <h1><?= $article->title ?></h1>
+    <img src="<?= $article->imageLink; ?>" alt="article image">
     <pre style="background-color: #E9E5D6">
         <p><i><?= $article->formatPublishDate() ?></i></p>
         <p><?= $article->description ?></p>
